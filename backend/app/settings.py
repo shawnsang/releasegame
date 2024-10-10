@@ -50,7 +50,7 @@ def init_ollama():
         model_name=os.getenv("EMBEDDING_MODEL"),
     )
     Settings.llm = Ollama(
-        base_url=base_url, model=os.getenv("MODEL"), request_timeout=request_timeout
+        base_url=base_url, model=os.getenv("MODEL"), request_timeout=300
     )
 
 
