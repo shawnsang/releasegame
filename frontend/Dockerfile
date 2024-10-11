@@ -4,7 +4,7 @@ FROM docker.m.daocloud.io/library/node:20-alpine AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package*.json ./
+COPY package.json package-lock.* ./
 RUN npm install --verbose && npm ci --omit=dev
 
 # Copy source files and build the application
