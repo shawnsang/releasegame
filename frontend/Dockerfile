@@ -1,16 +1,16 @@
+# Build stage
 FROM docker.m.daocloud.io/library/node:20-alpine AS build
 
 WORKDIR /app
 
-# Install dependencies
-COPY package.json  ./
-RUN npm install --verbose
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci --only=production
 
-# Build the application
+# Copy source files and build the application
 COPY . .
-RUN npm run build --verbose
+RUN npm run build
 
-# ====================================
 # Production stage
 FROM docker.m.daocloud.io/library/node:20-alpine AS release
 
